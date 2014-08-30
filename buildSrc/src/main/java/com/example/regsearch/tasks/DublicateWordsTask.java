@@ -19,9 +19,6 @@ import java.util.regex.Matcher;
 
 import com.google.common.io.Files;
 
-/**
- * Created by Cannibal on 26.8.2014 г..
- */
 public class DublicateWordsTask extends DefaultTask {
 
     @InputFile
@@ -32,8 +29,8 @@ public class DublicateWordsTask extends DefaultTask {
 
     @TaskAction
     void search() {
-        //Pattern regex = Pattern.compile("\\b([a-zA-Z]+) +\\1\\b");
-        Pattern regex = Pattern.compile("(\\b([',.!?])\\b) \\1");
+        Pattern regex = Pattern.compile("\\b([a-zA-Z]+) +\\1\\b");
+        // Pattern regex = Pattern.compile("\"\\\\n\"");
         for (File file : getProject().zipTree(source)) {
             try {
                 Matcher regexMatcher = regex.matcher(Files.toString(file, encoding));
@@ -65,4 +62,3 @@ public class DublicateWordsTask extends DefaultTask {
         this.encoding = encoding;
     }
 }
-
